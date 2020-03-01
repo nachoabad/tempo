@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @slot.day %>
+</p>
+
+<p>
+  <strong>Hour:</strong>
+  <%= @slot.hour %>
+</p>
+
+<p>
+  <strong>Min:</strong>
+  <%= @slot.min %>
+</p>
+
+<p>
+  <strong>Zone:</strong>
+  <%= @slot.zone %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @slot.status %>
+</p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @slot.service_id %>
+</p>
+
+<%= link_to 'Edit', edit_slot_path(@slot) %> |
+<%= link_to 'Back', slots_path %>

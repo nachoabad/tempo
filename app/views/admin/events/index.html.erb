@@ -1,0 +1,10 @@
+<%= link_to 'Back', admin_service_events_path(@service, date: @week_start - 7) %>
+<h1><%= @week_start.strftime("Semana %U, %Y") %></h1>
+<%= link_to 'Next', admin_service_events_path(@service, date: @week_start + 7) %>
+
+<% 7.times do |day| %>
+  <h2><%= (@week_start + day).strftime("%a %e %b")%></h2>
+  <% @slots.for_date(@week_start + day).each do |slot| %>
+    <%= slot.display  %>
+  <% end %>
+<% end %>
