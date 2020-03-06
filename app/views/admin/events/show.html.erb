@@ -17,7 +17,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @event.user.email %>
+  <%= @event.user.email if @event.user %>
 </p>
 
-<%= link_to 'Back', events_path %>
+<%= link_to 'Liberar', admin_event_path(@event), method: :delete, data: { confirm: '¿Estás seguro?' } %>

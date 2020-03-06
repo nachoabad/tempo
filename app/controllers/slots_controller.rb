@@ -51,8 +51,6 @@ class SlotsController < ApplicationController
     end
   end
 
-  # DELETE /slots/1
-  # DELETE /slots/1.json
   def destroy
     @slot.destroy
     respond_to do |format|
@@ -64,6 +62,7 @@ class SlotsController < ApplicationController
   private
     def set_service
       @service = Service.find(params[:service_id])
+      cookies[:service_id] = @service.id
     end
 
     def set_slot

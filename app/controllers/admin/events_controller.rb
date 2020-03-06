@@ -15,17 +15,21 @@ class Admin::EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @date = params[:date]
+    @slot = current_admin.slots.find params[:slot]
   end
 
   def edit
   end
 
   def create
-    @event = Event.new(event_params)
+    slot = current_admin.slots.find params[:event][:slot_id]
+    @event = slot.events.new(event_params)
+    @event.blocked!
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to admin_service_events_path(@event.service), notice: 'Event was successfully blocked.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -49,7 +53,7 @@ class Admin::EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to admin_service_events_path(@event.service), notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -63,8 +67,7 @@ class Admin::EventsController < ApplicationController
       @service = current_admin.services.find(params[:service_id])
     end
 
-    # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:datetime, :note, :service_id, :user_id)
+      params.require(:event).permit(:date, :slot_id)
     end
 end

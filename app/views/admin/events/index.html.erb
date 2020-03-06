@@ -6,6 +6,8 @@
   <% date = @week_start + day %>
   <h2><%= date.strftime("%a %e %b")%></h2>
   <% @slots.on_date(date).each do |slot| %>
-    <%= slot.available_on_date?(date) ? slot.display : (link_to slot.display, admin_event_path(slot.event_on_date date)) %>
+    <%= slot.available_on_date?(date) ?
+          (link_to slot.display, new_admin_service_event_path(@service, slot: slot, date: date)) :
+          (link_to slot.display, admin_event_path(slot.event_on_date date)) %>
   <% end %>
 <% end %>

@@ -5,4 +5,5 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :services
+  has_many :slots, through: :services
 end
