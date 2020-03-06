@@ -1,7 +1,7 @@
 <%= link_to 'Back', service_slots_path(@service, date: @previous_date) if @previous_date %>
-<h1><%= @soonest_date %></h1>
+<h1><%= @date %></h1>
 <%= link_to 'Next', service_slots_path(@service, date: @next_date) %>
 
 <% @slots.each do |slot| %>
-  <p><%= link_to slot.display, new_service_event_path(@service) %></p>
+  <p><%= link_to slot.display, new_slot_event_path(slot, date: @date) %></p>
 <% end %>

@@ -1,19 +1,19 @@
 class Service < ApplicationRecord
   belongs_to :admin
-  has_many :events, dependent: :destroy
   has_many :slots,  dependent: :destroy
+  has_many :events, through: :slots, dependent: :destroy
 
   def soonest_available_date(date)
-    while slots.for_date(date).empty? do
-      date += 1
+    while slots.available_on_date(date).empty? do
+      (date > (Date.today + 99.days)) ? (return nil) : (date += 1)
     end
     date
   end
 
-  def latest_available_date(date)
-    while slots.for_date(date).empty? do
+  def previous_available_date(date)
+    while slots.available_on_date(date).empty? do
       (date <= Date.today) ? (return nil) : (date -= 1)
     end
-    date
+    (date < Date.today) ? (return nil) : date
   end
 end

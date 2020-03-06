@@ -3,8 +3,9 @@
 <%= link_to 'Next', admin_service_events_path(@service, date: @week_start + 7) %>
 
 <% 7.times do |day| %>
-  <h2><%= (@week_start + day).strftime("%a %e %b")%></h2>
-  <% @slots.for_date(@week_start + day).each do |slot| %>
-    <%= slot.display  %>
+  <% date = @week_start + day %>
+  <h2><%= date.strftime("%a %e %b")%></h2>
+  <% @slots.on_date(date).each do |slot| %>
+    <%= slot.available_on_date?(date) ? slot.display : (link_to slot.display, admin_event_path(slot.event_on_date date)) %>
   <% end %>
 <% end %>

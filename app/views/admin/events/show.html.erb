@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Datetime:</strong>
-  <%= @event.datetime %>
+  <strong>Date:</strong>
+  <%= @event.date %>
 </p>
 
 <p>
@@ -11,14 +11,13 @@
 </p>
 
 <p>
-  <strong>Service:</strong>
-  <%= @event.service_id %>
-</p>
+  <strong>Hora:</strong>
+  <%= @event.hour %>
+</p>  
 
 <p>
   <strong>User:</strong>
-  <%= @event.user_id %>
+  <%= @event.user.email %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

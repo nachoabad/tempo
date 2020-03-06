@@ -13,28 +13,13 @@ user2 = User.create! email: 'user2@mail.com', password: 'useruser', password_con
 
 service1 = admin1.services.create! name: 'Service 1', time_zone: 'Caracas'
 
-slot1 = service1.slots.create! day: 1, hour: 8, min: 0
-slot2 = service1.slots.create! day: 1, hour: 9, min: 30
-slot3 = service1.slots.create! day: 1, hour: 17, min: 0
-service1.slots.create! day: 2, hour: 8, min: 0
-service1.slots.create! day: 2, hour: 9, min: 0
-service1.slots.create! day: 2, hour: 10, min: 0
-service1.slots.create! day: 3, hour: 8, min: 0
-service1.slots.create! day: 4, hour: 8, min: 0
-service1.slots.create! day: 5, hour: 8, min: 0
-service1.slots.create! day: 6, hour: 8, min: 0
-
-Time.zone = service1.time_zone
-Event.create! user: user1, service: service1, status: 1, 
-              time: Time.zone.local(Date.today.year, 
-                                    Date.today.month,
-                                    slot1.day, 
-                                    slot1.hour,
-                                    slot1.min).advance(days: 7)
-
-Event.create! user: user1, service: service1, status: 1, 
-              time: Time.zone.local(Date.today.year, 
-                                    Date.today.month,
-                                    slot3.day, 
-                                    slot3.hour,
-                                    slot3.min).advance(days: 7)
+service1.slots.create! day: 1, hour: 8,  min:  0, status: 1
+service1.slots.create! day: 1, hour: 9,  min: 30, status: 1
+service1.slots.create! day: 1, hour: 17, min:  0, status: 1
+service1.slots.create! day: 2, hour: 8,  min:  0, status: 1
+service1.slots.create! day: 2, hour: 9,  min:  0, status: 1
+service1.slots.create! day: 2, hour: 10, min:  0, status: 1
+service1.slots.create! day: 3, hour: 8,  min:  0, status: 1
+service1.slots.create! day: 4, hour: 8,  min:  0, status: 1
+service1.slots.create! day: 5, hour: 8,  min:  0, status: 1
+service1.slots.create! day: 6, hour: 8,  min:  0, status: 1

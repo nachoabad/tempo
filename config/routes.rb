@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :services, shallow: true do
-    resources :slots
-    resources :events
+    resources :slots do
+      resources :events, only: [:new, :create]
+    end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :events, only: [:index, :destroy]
 end

@@ -1,13 +1,14 @@
 class SlotsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_service, only: [:index]
   before_action :set_slot, only: [:show, :edit, :update, :destroy]
 
   def index
-    date = params[:date].try(:to_date) || Date.today
-    @soonest_date  = @service.soonest_available_date(date)
-    @next_date     = @service.soonest_available_date(@soonest_date + 1)
-    @previous_date = @service.latest_available_date(@soonest_date - 1)
-    @slots         = @service.slots.for_date(@soonest_date)
+    params_date    = params[:date].try(:to_date) || Date.today
+    @date          = @service.soonest_available_date(params_date)
+    @next_date     = @service.soonest_available_date(@date + 1)
+    @previous_date = @service.previous_available_date(@date - 1)
+    @slots         = @service.slots.available_on_date(@date)
   end
 
   def show
