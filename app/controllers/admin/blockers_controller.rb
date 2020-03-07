@@ -7,26 +7,24 @@ class Admin::BlockersController < ApplicationController
   end
 
   def create
-    slot = current_admin.slots.find params[:event][:slot_id]
-    @event = slot.events.new(event_params)
-    @event.blocked!
+    slot_blocker = SlotBlocker.new(blocker_params: blocker_params,
+                                   service: @service)
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to admin_service_events_path(@service), notice: 'Bloqueo éxitoso' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    if slot_blocker.block!
+      redirect_to admin_service_events_path(@service), notice: 'Bloqueo éxitoso'
+    else
+      # handle errors
     end
   end
 
   def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_service_events_path(@event.service), notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
+    slot_blocker = SlotBlocker.new(blocker_params: blocker_params,
+                                   service: @service)
+
+    if slot_blocker.unblock!
+      redirect_to admin_service_events_path(@service), notice: 'Desbloqueo éxitoso'
+    else
+      # handle errors
     end
   end
 
@@ -36,6 +34,6 @@ class Admin::BlockersController < ApplicationController
     end
 
     def blocker_params
-      params.permit(:date, :week, :slot)
+      params.permit(:week, :date, :slot)
     end
 end
