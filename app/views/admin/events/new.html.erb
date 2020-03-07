@@ -1,9 +1,0 @@
-<h1>Deseas bloquear <%= @date %> <%= @slot.hour %>?</h1>
-
-<%= form_with(model: [:admin, @slot.service, @event], local: true) do |form| %>
-  <%= form.hidden_field :date, value: @date %>
-  <%= form.hidden_field :slot_id, value: @slot.id %>
-  <%= form.submit "Bloquear #{@date} #{@slot.hour}?" %>
-<% end %>
-
-<%= link_to 'Back', events_path %>

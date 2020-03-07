@@ -4,9 +4,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :services, shallow: true do
-      resources :events
+      resources :events, :blockers
     end
-    resources :slots_blockers
     root to: 'services#index'
   end
 

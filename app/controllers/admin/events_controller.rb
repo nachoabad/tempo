@@ -68,6 +68,6 @@ class Admin::EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:date, :slot_id)
+      params.require(:event).permit(:date)
     end
 end
