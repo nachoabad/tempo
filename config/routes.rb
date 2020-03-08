@@ -4,8 +4,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :services, shallow: true do
-      resources :events, :blockers
+      resources :events
+      resources :blockers do
+        collection do
+          post 'block'
+          post 'unblock'
+        end
+      end
     end
+
     root to: 'services#index'
   end
 

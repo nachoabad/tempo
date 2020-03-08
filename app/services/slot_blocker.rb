@@ -1,34 +1,52 @@
+# TODO: Refactor and optimize
 class SlotBlocker
   def initialize(blocker_params:, service:)
-    @week    = blocker_params[:week]
-    @date    = blocker_params[:date]
-    @slot    = admin.slots.find_by id: blocker_params[:slot]
     @service = service
-    @admin   = service.admin
+    @week    = blocker_params[:week].try :to_date
+    @date    = blocker_params[:date].try :to_date
+    @slot    = service.slots.find_by id: blocker_params[:slot]
   end
 
   def block!
-    events.update_all(status: :blocked, user: nil)
+    events_to_block.each {|event| event.update(status: 2, user: nil) }
   end
 
   def unblock!
-    events.destroy_all
+    events_to_unblock.each {|event| event.destroy }
   end
 
   private
 
-  def events
-    event = []
+  def events_to_block
+    events = []
     if @date && @slot
-      events << @admin.events.create_or_find_by(date: @date, slot: @slot)
+      events << Event.create_or_find_by(date: @date, slot: @slot)
     elsif @date
       @service.slots.on_date(@date).each do |slot|
-        events << @admin.events.create_or_find_by(date: @date, slot: slot)
+        events << Event.create_or_find_by(date: @date, slot: slot)
       end
     elsif @week
-      (@week.beginning_of_week..@week.end_of_week).each |date|
+      (@week.beginning_of_week..@week.end_of_week).each do |date|
         @service.slots.on_date(date).each do |slot|
-          events << @admin.events.create_or_find_by(date: date, slot: slot)
+          events << Event.create_or_find_by(date: date, slot: slot)
+        end
+      end
+    end
+    events
+  end
+
+  def events_to_unblock
+    events = []
+    if @date && @slot
+      events << Event.find_by(date: @date, slot: @slot)
+    elsif @date
+      @service.slots.on_date(@date).each do |slot|
+        events << Event.find_by(date: @date, slot: slot)
+      end
+    elsif @week
+      (@week.beginning_of_week..@week.end_of_week).each do |date|
+        @service.slots.on_date(date).each do |slot|
+          events << Event.find_by(date: date, slot: slot)
         end
       end
     end

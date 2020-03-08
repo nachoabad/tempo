@@ -1,5 +1,5 @@
 <h1>Deseas bloquear hacer helper <%= @blocker_params %>?</h1>
 
-<%= link_to 'Bloquear', admin_service_blockers_path(@service, @blocker_params), method: :post,   data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Liberar',  admin_service_blockers_path(@service, @blocker_params), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Bloquear', block_admin_service_blockers_path(@service, @blocker_params),  method: :post, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Liberar',  unblock_admin_service_blockers_path(@service, @blocker_params), method: :post, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Regresar', :back %>
