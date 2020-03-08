@@ -4,7 +4,6 @@ one:
   day: 1
   hour: 1
   min: 1
-  zone: MyString
   status: 1
   service: one
 
@@ -12,6 +11,5 @@ two:
   day: 1
   hour: 1
   min: 1
-  zone: MyString
   status: 1
   service: two
