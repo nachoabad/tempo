@@ -46,7 +46,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
       params: { event: { date: Date.tomorrow, note: 'My Note' } }
     follow_redirect!
 
-    assert_select 'p', 'Event was successfully created.'
+    assert_select 'div.alert', 'Event was successfully created.'
     assert_select 'h1', 'Events'
     assert_select 'td', 'My Note'
     assert_select 'td', Date.tomorrow.to_s
@@ -56,7 +56,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 
     delete event_path(slots(:tomorrow_8am).events.on_date(Date.tomorrow).first)
     follow_redirect!
-    assert_select 'p', 'Event was successfully destroyed.'
+    assert_select 'div.alert', 'Event was successfully destroyed.'
     
     get service_slots_path(services(:one), date: Date.tomorrow.to_s)
     assert_select 'h1', Date.tomorrow.to_s

@@ -21,9 +21,9 @@
 
   <body>
     <%= render 'layouts/navbar' %>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'layouts/alert'  if alert %>
+    <%= render 'layouts/notice' if notice %>
+    
     <%= yield %>
   </body>
 </html>
