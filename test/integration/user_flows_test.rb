@@ -8,7 +8,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     
     get '/users/sign_up'
-    assert_select "h2", "Sign up"
+    assert_select "h2", "Crear cuenta"
 
     post "/users",
       params: { user: { email: 'user+new@mail.com', password: 'useruser', password_confirmation: 'useruser' } }
@@ -17,13 +17,13 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     
     delete destroy_user_session_path
     follow_redirect!
-    assert_select "h2", "Log in"
+    assert_select "h2", "Iniciar sesión"
   end
 
   test "can book a slot and unbook it" do
     get service_slots_path(services(:one))
     follow_redirect!
-    assert_select "h2", "Log in"
+    assert_select "h2", "Iniciar sesión"
 
     post user_session_path,
       params: { user: { email: users(:one).email, password: 'useruser' } }
