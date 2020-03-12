@@ -11,9 +11,10 @@ class Service < ApplicationRecord
   end
 
   def previous_available_date(date)
-    while slots.available_on_date(date).empty? do
-      (date <= Date.today) ? (return nil) : (date -= 1)
+    date -= 1
+    while (date >= Date.today) do
+      slots.available_on_date(date).empty? ? (date -= 1) : (return date)
     end
-    (date < Date.today) ? (return nil) : date
+    return nil
   end
 end

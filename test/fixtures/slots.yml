@@ -1,15 +1,44 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% today = Date.today %>
+<% tomorrow = Date.tomorrow %>
 
-one:
-  day: 1
-  hour: 1
-  min: 1
+today_8am:
+  day: <%= today.wday %>
+  hour: 8
+  min: 00
   status: 1
   service: one
 
-two:
-  day: 1
-  hour: 1
-  min: 1
+tomorrow_8am:
+  day: <%= tomorrow.wday %>
+  hour: 8
+  min: 00
   status: 1
-  service: two
+  service: one
+
+b_1_811:
+  day: 1
+  hour: 8
+  min: 11
+  status: 1
+  service: b
+
+b_2_813_inactive:
+  day: 1
+  hour: 8
+  min: 13
+  status: 0
+  service: b
+
+b_3_814:
+  day: 1
+  hour: 8
+  min: 14
+  status: 1
+  service: b
+
+b_7_812:
+  day: 1
+  hour: 8
+  min: 12
+  status: 1
+  service: b

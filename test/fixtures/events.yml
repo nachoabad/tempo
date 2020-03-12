@@ -1,13 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  date: 2020-03-01
-  note: MyString
-  slot: one
+  date: <%= Date.today + 14.days %>
+  note: 'note'
+  status: 1
+  slot: today_8am
   user: one
 
-two:
-  date: 2020-03-01
-  note: MyString
-  slot: two
-  user: two
+

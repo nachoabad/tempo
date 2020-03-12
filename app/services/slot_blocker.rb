@@ -32,7 +32,7 @@ class SlotBlocker
         end
       end
     end
-    events
+    events.compact
   end
 
   def events_to_unblock
@@ -50,6 +50,6 @@ class SlotBlocker
         end
       end
     end
-    events
+    events.compact
   end
 end

@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
   private
 
   def set_service_id
-    @service_id = cookies[:service_id] || current_user.events.last.service.id if current_user
+    @service_id = params[:service_id] ||
+                  cookies[:service_id] || 
+                  current_user.events.last.service.id if current_user
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    new_session_path(resource_name)
   end
 end

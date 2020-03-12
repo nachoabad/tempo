@@ -20,7 +20,7 @@ class Slot < ApplicationRecord
   end
 
   def event_on_date(date)
-    events.find_by! date: date
+    events.find_by date: date
   end
 
   def display
