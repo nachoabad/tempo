@@ -14,7 +14,7 @@ class AdminFlowsTest < ActionDispatch::IntegrationTest
     post admin_session_path,
       params: { admin: { email: 'admin2@mail.com', password: 'adminadmin' } }
     follow_redirect!
-    assert_select "a", "Logout"
+    assert_select "a", "Salir"
 
     delete destroy_admin_session_path
     follow_redirect!
