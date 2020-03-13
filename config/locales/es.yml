@@ -1,0 +1,16 @@
+es:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: registro inválido
+      models:
+        user:
+          attributes:
+            password:
+              invalid: 'Must include uppercase & number'
+              blank: no puede estar vacía
+            password_confirmation:
+              confirmation: no coincide las confirmación de clave
+  date:
+    formats:
+      default: "%m/%d/%y"
