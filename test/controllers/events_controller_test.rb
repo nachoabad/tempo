@@ -19,7 +19,8 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create event" do
     assert_difference('Event.count', 1) do
-      post slot_events_url(slots(:today_8am)), params: { event: { date: Date.today, note: 'note' } }
+      post slot_events_url(slots(:today_8am)),
+        params: { event: { date: Date.today, note: 'note', user_attributes: { name: 'User One', phone: 'Phone1'} } }
     end
 
     assert_redirected_to events_url

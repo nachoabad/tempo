@@ -4,14 +4,14 @@
 today_8am:
   day: <%= today.wday %>
   hour: 8
-  min: 00
+  min: 0
   status: 1
   service: one
 
 tomorrow_8am:
   day: <%= tomorrow.wday %>
   hour: 8
-  min: 00
+  min: 0
   status: 1
   service: one
 

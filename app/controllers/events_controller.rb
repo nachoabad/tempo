@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 
   def new
     @date = params[:date].to_date
-    @event = @slot.events.new
+    @event = current_user.events.new slot: @slot
   end
 
   def edit
@@ -22,7 +22,7 @@ class EventsController < ApplicationController
     @event = current_user.events.new(event_params.merge slot: @slot)
 
     respond_to do |format|
-      if @event.save
+      if @event.save && current_user.update(user_params[:user_attributes])
         format.html { redirect_to events_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -63,5 +63,9 @@ class EventsController < ApplicationController
 
     def event_params
       params.require(:event).permit(:date, :note)
+    end
+
+    def user_params
+      params.require(:event).permit(user_attributes: [:name, :phone])
     end
 end

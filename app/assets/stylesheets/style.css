@@ -9246,6 +9246,7 @@ textarea.form-control {
       .testimony-wrap .user-img .quote i {
         color: #fff; }
   .testimony-wrap .name {
+    text-transform: capitalize;
     font-weight: 700;
     font-size: 18px;
     margin-bottom: 0;

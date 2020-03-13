@@ -2,6 +2,8 @@ class Event < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :slot
 
+  accepts_nested_attributes_for :user, update_only: true
+
   validates :date, presence: true
   validates :slot, uniqueness: { scope: :date }
   validate :date_in_slot

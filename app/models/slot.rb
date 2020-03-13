@@ -24,6 +24,6 @@ class Slot < ApplicationRecord
   end
 
   def display
-    hour.to_s + ':' + min.to_s
+    Time.new(1, 1, 1, hour, min).strftime('%l:%M%p')
   end
 end

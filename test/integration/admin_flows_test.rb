@@ -26,8 +26,8 @@ class AdminFlowsTest < ActionDispatch::IntegrationTest
 
     get admin_service_events_path(services(:b))
 
-    assert_select 'a', '8:11'
-    assert_select 'a', '8:12'
-    assert_select 'a', '8:13'
+    assert_select 'a', '8:11AM'
+    assert_select 'a', '8:12AM'
+    assert_select 'a', '8:13AM'
   end
 end

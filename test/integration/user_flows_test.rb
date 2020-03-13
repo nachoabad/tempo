@@ -28,19 +28,20 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     post user_session_path,
       params: { user: { email: users(:one).email, password: 'useruser' } }
     follow_redirect!
-    assert_select 'p.name', Date.today.to_s
+    assert_select 'p.name', I18n.l(Date.today)
     assert_select 'a', "Siguientes >>"
     assert_select "a", {count: 0, text: "<< Anteriores"}
-    assert_select 'a', '8:0'
+    assert_select 'a.btn', '8:00AM'
 
     get service_slots_path(services(:one), date: Date.tomorrow.to_s)
-    assert_select 'p.name', Date.tomorrow.to_s
+    assert_select 'p.name', I18n.l(Date.tomorrow)
     assert_select 'a', "Siguientes >>"
     assert_select "a", "<< Anteriores"
-    assert_select 'a', '8:0'
+    assert_select 'a', '8:00AM'
 
     get new_slot_event_path(slots(:tomorrow_8am), date: Date.tomorrow.to_s)
-    assert_select 'h1', "New Event #{Date.tomorrow.to_s}"
+    assert_select 'h2', "Reservar #{slots(:tomorrow_8am).display}, #{I18n.l Date.tomorrow}"
+    assert_select 'input[value]', 'User One'
 
     post slot_events_path(slots(:tomorrow_8am)),
       params: { event: { date: Date.tomorrow, note: 'My Note' } }
@@ -52,16 +53,16 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'td', Date.tomorrow.to_s
 
     get service_slots_path(services(:one), date: Date.tomorrow.to_s)
-    assert_select 'p.name', (Date.today + 7).to_s
+    assert_select 'p.name', I18n.l(Date.today + 7)
 
     delete event_path(slots(:tomorrow_8am).events.on_date(Date.tomorrow).first)
     follow_redirect!
     assert_select 'div.alert', 'Event was successfully destroyed.'
     
     get service_slots_path(services(:one), date: Date.tomorrow.to_s)
-    assert_select 'p.name', Date.tomorrow.to_s
+    assert_select 'p.name', I18n.l(Date.tomorrow)
     assert_select 'a', "Siguientes >>"
     assert_select "a", "<< Anteriores"
-    assert_select 'a', '8:0'
+    assert_select 'a', '8:00AM'
   end
 end
