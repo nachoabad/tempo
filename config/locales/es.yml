@@ -12,6 +12,28 @@ es:
             password_confirmation:
               confirmation: no coincide las confirmación de clave
   date:
+    abbr_day_names:
+      - Dom
+      - Lun
+      - Mar
+      - Mié
+      - Jue
+      - Vie
+      - Sáb
+    abbr_month_names:
+      -
+      - ene
+      - feb
+      - marzo
+      - abr
+      - may
+      - jun
+      - jul
+      - ago
+      - sep
+      - oct
+      - nov
+      - dic
     day_names:
       - domingo
       - lunes
@@ -21,6 +43,7 @@ es:
       - viernes
       - sábado
     formats:
+      long: "%a %-d %b"
       default: '%A, %B %d, %Y'
       short: '%e-%-m-%y'
     month_names:

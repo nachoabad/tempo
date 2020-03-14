@@ -18,6 +18,10 @@ class Event < ApplicationRecord
   scope :on_date,  ->(date) { where(date: date) }
   scope :upcoming, -> { where("date >= ?", Date.today) }
 
+  def button_class
+    blocked? ? 'btn-outline-danger' : 'btn-success'
+  end
+
   private
 
   def date_in_slot

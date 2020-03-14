@@ -6484,6 +6484,9 @@ button.bg-dark:focus {
   -webkit-box-shadow: none !important;
   box-shadow: none !important; }
 
+.mw-150 {
+  max-width: 150px !important; }
+
 .w-25 {
   width: 25% !important; }
 

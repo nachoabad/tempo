@@ -1,13 +1,24 @@
-<%= link_to 'Back', admin_service_events_path(@service, date: @week_start - 7) %>
-<h1><%= link_to @week_start.strftime("Semana %U, %Y"), new_admin_service_blocker_path(@service, week: @week_start) %></h1>
-<%= link_to 'Next', admin_service_events_path(@service, date: @week_start + 7) %>
-
-<% 7.times do |day| %>
-  <% date = @week_start + day %>
-  <h2><%= link_to date.strftime("%a %e %b"), new_admin_service_blocker_path(@service, date: date) %></h2>
-  <% @slots.on_date(date).each do |slot| %>
-    <%= slot.available_on_date?(date) ?
-          (link_to slot.display, new_admin_service_blocker_path(@service, slot: slot, date: date)) :
-          (link_to slot.display, admin_event_path(slot.event_on_date date)) %>
-  <% end %>
-<% end %>
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-6 text-center heading-section">
+        <%= link_to '<<', admin_service_events_path(@service, date: @week_start - 7), class: "btn btn-primary py-3" %>
+        <%= link_to @week_start.strftime("Semana %U, %Y"), new_admin_service_blocker_path(@service, week: @week_start), class: "btn btn-primary mx-2 py-3" %>
+        <%= link_to '>>', admin_service_events_path(@service, date: @week_start + 7), class: "btn btn-primary py-3" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <% 7.times do |day| %>
+        <% date = @week_start + day %>
+        <div class="col d-flex flex-column mb-5">
+          <%= link_to I18n.l(date, format: :long), new_admin_service_blocker_path(@service, date: date), class: "btn btn-primary mw-150 mb-2" %>
+          <% @slots.on_date(date).each do |slot| %>
+            <%= slot.available_on_date?(date) ?
+                  (link_to slot.display, new_admin_service_blocker_path(@service, slot: slot, date: date), class: "btn btn-outline-info mw-150 mb-2") :
+                  (link_to slot.display, admin_event_path(slot.event_on_date(date)), class: "btn #{slot.event_on_date(date).button_class} mw-150 mb-2") %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
