@@ -4,6 +4,7 @@ class Admin::BlockersController < ApplicationController
 
   def new
     @blocker_params = blocker_params
+    @blocker_display = Blocker.new(blocker_params).display
   end
 
   def block

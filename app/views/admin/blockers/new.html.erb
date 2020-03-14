@@ -1,5 +1,30 @@
-<h1>Deseas bloquear hacer helper <%= @blocker_params %>?</h1>
 
-<%= link_to 'Bloquear', block_admin_service_blockers_path(@service, @blocker_params),  method: :post, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Liberar',  unblock_admin_service_blockers_path(@service, @blocker_params), method: :post, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Regresar', :back %>
+<section class="ftco-section">
+  <div class="container">
+    <div class="d-flex justify-content-center mb-3">
+      <div class="heading-section">
+        <h2><%= @blocker_display %></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+            <div class="testimony-wrap p-4 text-center">
+              <div class="text">
+                <p class="name">Lunes 22 Septiembre 2020</p>
+              </div>
+              <div class="row mt-3 d-flex justify-content-center">
+                <div class="col mb-3">
+                  <%= link_to '<< Regresar', :back, class: "btn btn-primary py-3 px-5" %>
+                </div>
+                <div class="col mb-3">
+                  <%= link_to 'Liberar',  unblock_admin_service_blockers_path(@service, @blocker_params), class: "btn btn-success py-3 px-5", method: :post, data: { confirm: 'Are you sure?' } %>
+                </div>
+                <div class="col mb-3">
+                  <%= link_to 'Bloquear', block_admin_service_blockers_path(@service, @blocker_params), class: "btn btn-danger py-3 px-5",  method: :post, data: { confirm: 'Are you sure?' } %>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
