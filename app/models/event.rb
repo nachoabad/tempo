@@ -8,13 +8,15 @@ class Event < ApplicationRecord
   validates :slot, uniqueness: { scope: :date }
   validate :date_in_slot
 
-  delegate :hour, :min, :service, to: :slot
+  delegate :name, to: :service
+  delegate :display, :service, to: :slot
 
   enum status: [:pending, :confirmed, :blocked]
   
   default_scope { order(:date) }
 
-  scope :on_date, ->(date) { where(date: date) }
+  scope :on_date,  ->(date) { where(date: date) }
+  scope :upcoming, -> { where("date >= ?", Date.today) }
 
   private
 

@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = current_user.events
+    @events = current_user.events.upcoming
   end
 
   def show
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save && current_user.update(user_params[:user_attributes])
-        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
+        format.html { redirect_to events_path, notice: 'Cita reservada éxitosamente' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: 'Cita anulada éxitosamente' }
       format.json { head :no_content }
     end
   end

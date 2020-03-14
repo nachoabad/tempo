@@ -41,23 +41,25 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 
     get new_slot_event_path(slots(:tomorrow_8am), date: Date.tomorrow.to_s)
     assert_select 'h2', "Reservar #{slots(:tomorrow_8am).display}, #{I18n.l Date.tomorrow}"
-    assert_select 'input[value]', 'User One'
+    assert_select '#event_user_attributes_name[value=?]', 'User One'
+    assert_select '#event_user_attributes_phone[value=?]', 'phone1'
 
     post slot_events_path(slots(:tomorrow_8am)),
-      params: { event: { date: Date.tomorrow, note: 'My Note' } }
+      params: { event: { date: Date.tomorrow, note: 'My Note',
+                         user_attributes: { name: 'User One edited', phone: 'phone1 edited'} } }
     follow_redirect!
 
-    assert_select 'div.alert', 'Event was successfully created.'
-    assert_select 'h1', 'Events'
-    assert_select 'td', 'My Note'
-    assert_select 'td', Date.tomorrow.to_s
+    assert_select 'div.alert', 'Cita reservada éxitosamente'
+    assert_select 'h2', 'Mis Citas'
+    assert_select 'td', 'Service 1'
+    assert_select 'td', "#{I18n.l(Date.tomorrow, format: :short)} 8:00AM"
 
     get service_slots_path(services(:one), date: Date.tomorrow.to_s)
     assert_select 'p.name', I18n.l(Date.today + 7)
 
     delete event_path(slots(:tomorrow_8am).events.on_date(Date.tomorrow).first)
     follow_redirect!
-    assert_select 'div.alert', 'Event was successfully destroyed.'
+    assert_select 'div.alert', 'Cita anulada éxitosamente'
     
     get service_slots_path(services(:one), date: Date.tomorrow.to_s)
     assert_select 'p.name', I18n.l(Date.tomorrow)
