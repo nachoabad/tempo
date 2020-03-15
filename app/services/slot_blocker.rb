@@ -25,6 +25,16 @@ class SlotBlocker
     end
   end
 
+  def unit
+    if @week
+      'toda la semana'
+    elsif @slot
+      'este horario'
+    else
+      'todo el día'
+    end
+  end
+
   def event
     @slot.try :event_on_date, @date 
   end

@@ -12,7 +12,7 @@
           <% if event = @slot_blocker.event %>
             <div class="text">
               <% if event.blocked? %>
-                <p class="name text-danger">Esta hora/fecha está bloqueda</p>
+                <p class="name text-danger">Este horario está bloqueado</p>
               <% else %>
                 <p class="name">Reserva: <%= event.user.name%></p>
                 <p class="name">Email: <%= event.user.email%></p>
@@ -22,14 +22,16 @@
             </div>
           <% end %>
           <div class="row mt-3 d-flex justify-content-center">
-              <%= link_to 'Liberar',  unblock_admin_service_blockers_path(@service, @blocker_params),
-                                      class: "btn btn-success py-3 px-5 mx-5 my-2",
-                                      method: :post,
-                                      data: { confirm: '¿Estás seguro/a?' } %>
-              <%= link_to 'Bloquear', block_admin_service_blockers_path(@service, @blocker_params), 
-                                      class: "btn btn-danger py-3 px-5 mx-5 my-2",
-                                      method: :post, 
-                                      data: { confirm: '¿Estás seguro/a?' } %>
+              <%= link_to ('Liberar ' + @slot_blocker.unit),
+                    unblock_admin_service_blockers_path(@service, @blocker_params),
+                    class: "btn btn-success py-3 px-5 mx-5 my-2",
+                    method: :post,
+                    data: { confirm: '¿Estás seguro/a?' } %>
+              <%= link_to ('Bloquear ' + @slot_blocker.unit),
+                    block_admin_service_blockers_path(@service, @blocker_params), 
+                    class: "btn btn-danger py-3 px-5 mx-5 my-2",
+                    method: :post, 
+                    data: { confirm: '¿Estás seguro/a?' } unless event.try :blocked? %>
           </div>
         </div>
         <div class="d-flex justify-content-center mt-5">

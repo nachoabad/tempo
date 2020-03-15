@@ -10,14 +10,19 @@
     <div class="row mb-3">
       <% 7.times do |day| %>
         <% date = @week_start + day %>
-        <div class="col d-flex flex-column mb-5">
-          <%= link_to I18n.l(date, format: :long), new_admin_service_blocker_path(@service, date: date), class: "btn btn-primary mw-150 mb-2" %>
-          <% @slots.on_date(date).each do |slot| %>
-            <%= slot.available_on_date?(date) ?
-                  (link_to slot.display, new_admin_service_blocker_path(@service, slot: slot, date: date), class: "btn btn-outline-info mw-150 mb-2") :
-                  (link_to slot.display, new_admin_service_blocker_path(@service, slot: slot, date: date), class: "btn #{slot.event_on_date(date).button_class} mw-150 mb-2") %>
-          <% end %>
-        </div>
+        <% slots_on_date = @slots.on_date(date) %>
+        <% if slots_on_date.exists? %>
+          <div class="col d-flex flex-column mb-5">
+            <%= link_to I18n.l(date, format: :long), 
+                        new_admin_service_blocker_path(@service, date: date),
+                        class: "btn btn-primary mw-150 mb-2" %>
+            <% slots_on_date.each do |slot| %>
+              <%= slot.available_on_date?(date) ?
+                    (link_to slot.display, new_admin_service_blocker_path(@service, slot: slot, date: date), class: "btn btn-outline-info mw-150 mb-2") :
+                    (link_to slot.display, new_admin_service_blocker_path(@service, slot: slot, date: date), class: "btn #{slot.event_on_date(date).button_class} mw-150 mb-2") %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
