@@ -8,11 +8,11 @@
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
-          <li class="nav-item">
-            <%= link_to 'Salir', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+          <li class="nav-item cta">
+            <%= link_to 'Ver citas', admin_root_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Ver citas', admin_root_path, class: 'nav-link' %>
+            <%= link_to 'Salir', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
           </li>
         <% elsif user_signed_in? %>
           <li class="nav-item">

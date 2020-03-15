@@ -19,7 +19,7 @@ class SlotBlocker
     if @week
       @week.strftime('Semana %U, %Y')
     elsif @slot
-      @slot.display + ' - ' + I18n.l(@date)
+      @slot.display + ', ' + I18n.l(@date)
     else
       I18n.l(@date)
     end
