@@ -15,7 +15,7 @@
           <% @slots.on_date(date).each do |slot| %>
             <%= slot.available_on_date?(date) ?
                   (link_to slot.display, new_admin_service_blocker_path(@service, slot: slot, date: date), class: "btn btn-outline-info mw-150 mb-2") :
-                  (link_to slot.display, admin_event_path(slot.event_on_date(date)), class: "btn #{slot.event_on_date(date).button_class} mw-150 mb-2") %>
+                  (link_to slot.display, new_admin_service_blocker_path(@service, slot: slot, date: date), class: "btn #{slot.event_on_date(date).button_class} mw-150 mb-2") %>
           <% end %>
         </div>
       <% end %>

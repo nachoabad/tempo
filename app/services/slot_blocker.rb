@@ -19,10 +19,14 @@ class SlotBlocker
     if @week
       @week.strftime('Semana %U, %Y')
     elsif @slot
-      @slot.display + ' ' + I18n.l(@date)
+      @slot.display + ' - ' + I18n.l(@date)
     else
       I18n.l(@date)
     end
+  end
+
+  def event
+    @slot.try :event_on_date, @date 
   end
 
   private
