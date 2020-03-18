@@ -8,7 +8,7 @@ class AdminBlockersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_admin_service_blocker_url(services(:one))
+    get new_admin_service_blocker_url(services(:one), date: Date.today)
     assert_response :success
   end
 

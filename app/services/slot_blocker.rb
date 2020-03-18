@@ -15,6 +15,16 @@ class SlotBlocker
     events_to_unblock.each {|event| event.destroy }
   end
 
+  def display
+    if @week
+      @week.strftime('Semana %U, %Y')
+    elsif @slot
+      @slot.display + ' ' + I18n.l(@date)
+    else
+      I18n.l(@date)
+    end
+  end
+
   private
 
   def events_to_block
