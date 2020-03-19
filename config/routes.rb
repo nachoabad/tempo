@@ -22,4 +22,7 @@ Rails.application.routes.draw do
     end
   end
   resources :events, only: [:index, :destroy]
+  resources :pages,  only: :index
+
+  root to: 'pages#index'
 end

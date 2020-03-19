@@ -8355,15 +8355,12 @@ h1, h2, h3, h4, h5,
     opacity: 0;
     z-index: -1; }
   .hero-wrap .slider-text {
-    height: 750px;
     z-index: 0;
     overflow: hidden; }
     @media (max-width: 991.98px) {
       .hero-wrap .slider-text {
-        text-align: center;
-        height: 750px; } }
+        text-align: center; } }
     .hero-wrap .slider-text .one-third {
-      width: 60%;
       position: relative;
       z-index: -1; }
       .hero-wrap .slider-text .one-third .overlay {
