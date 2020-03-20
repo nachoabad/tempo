@@ -7,10 +7,10 @@ es:
     failure:
       already_authenticated: "Ya iniciaste sesión."
       inactive: "Tu cuenta aún no ha sido activada."
-      invalid: "Email y/o contraseña inválidos."
+      invalid: "Email y/o clave inválidos."
       locked: "Tu cuenta está bloqueada."
       last_attempt: "Tienes un intento más antes que tu cuenta sea bloqueada."
-      not_found_in_database: "%{authentication_keys} o contraseña inválidos."
+      not_found_in_database: "%{authentication_keys} o clave inválidos."
       timeout: "Tu sesión ha expirado. Inicia sesión nuevamente."
       unauthenticated: "Tienes que registrarte o iniciar sesión antes de continuar."
       unconfirmed: "Tienes que confirmar tu cuenta antes de continuar."
@@ -18,22 +18,22 @@ es:
       confirmation_instructions:
         subject: "Instrucciones de confirmación"
       reset_password_instructions:
-        subject: "Instrucciones de cambio de contraseña"
+        subject: "Instrucciones de cambio de clave"
       unlock_instructions:
         subject: "Instrucciones de desbloqueo"
       email_changed:
         subject: "Email modificado"
       password_change:
-        subject: "Contraseña modificada"
+        subject: "Clave modificada"
     omniauth_callbacks:
       failure: "No pudimos autentificar tu cuenta de %{kind} por la siguiente razón: \"%{reason}\"."
       success: "Te autentificaste correctamente con tu cuenta de %{kind}."
     passwords:
-      no_token: "No puedes acceder a esta página sin venir desde el email de reinicio de contraseña. Si vienes desde ahí, por favor asegúrate de usar la url completa que aparece."
-      send_instructions: "Recibirás un email con instrucciones para reiniciar tu contraseña en unos minutos."
-      send_paranoid_instructions: "Si tu email existe en el sistema, recibirás un email con instrucciones para reiniciar tu contraseña en unos minutos."
-      updated: "Tu contraseña fue modificada correctamente. Has iniciado sesión."
-      updated_not_active: "Tu contraseña fue modificada correctamente."
+      no_token: "No puedes acceder a esta página sin venir desde el email de reinicio de clave. Si vienes desde ahí, por favor asegúrate de usar la url completa que aparece."
+      send_instructions: "Recibirás un email con instrucciones para reiniciar tu clave en unos minutos."
+      send_paranoid_instructions: "Si tu email existe en el sistema, recibirás un email con instrucciones para reiniciar tu clave en unos minutos."
+      updated: "Tu clave fue modificada correctamente. Has iniciado sesión."
+      updated_not_active: "Tu clave fue modificada correctamente."
     registrations:
       destroyed: "Adiós, tu cuenta ha sido eliminada. Esperamos verte de vuelta pronto!"
       signed_up: "Bienvenido! Completa tu perfil."
