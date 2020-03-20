@@ -35,17 +35,21 @@ ActiveRecord::Schema.define(version: 2020_02_29_231636) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slot_id", "date"], name: "index_events_on_slot_id_and_date", unique: true
     t.index ["slot_id"], name: "index_events_on_slot_id"
+    t.index ["status"], name: "index_events_on_status"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
     t.string "name"
     t.string "time_zone"
+    t.integer "status"
     t.bigint "admin_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["admin_id"], name: "index_services_on_admin_id"
+    t.index ["status"], name: "index_services_on_status"
   end
 
   create_table "slots", force: :cascade do |t|
@@ -57,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_231636) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["service_id"], name: "index_slots_on_service_id"
+    t.index ["status"], name: "index_slots_on_status"
   end
 
   create_table "users", force: :cascade do |t|

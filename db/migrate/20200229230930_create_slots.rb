@@ -9,5 +9,7 @@ class CreateSlots < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :slots, :status
   end
 end

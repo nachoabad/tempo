@@ -9,5 +9,8 @@ class CreateEvents < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :events, :status
+    add_index :events, [:slot_id, :date], unique: true
   end
 end
