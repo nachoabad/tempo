@@ -14,6 +14,8 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
       params: { user: { email: 'user+new@mail.com', password: 'useruser', password_confirmation: 'useruser' } }
     follow_redirect!
     assert_select "a", "Salir"
+    assert_select "a", services(:one).name
+    assert_select "h2", 'Citas disponibles'
     
     delete destroy_user_session_path
     follow_redirect!
