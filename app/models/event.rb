@@ -8,8 +8,8 @@ class Event < ApplicationRecord
   validates :slot, uniqueness: { scope: :date }
   validate :date_in_slot
 
-  delegate :name, to: :service
-  delegate :display, :service, to: :slot
+  delegate :name, :admin,       to: :service
+  delegate :display, :service,  to: :slot
 
   enum status: [:pending, :confirmed, :blocked]
   

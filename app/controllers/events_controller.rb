@@ -23,6 +23,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save && current_user.update(user_params[:user_attributes])
+        EventMailer.with(event: @event).new_email.deliver_later
         format.html { redirect_to events_path, notice: 'Cita reservada éxitosamente' }
         format.json { render :show, status: :created, location: @event }
       else

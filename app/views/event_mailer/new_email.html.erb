@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+
+<body>
+    <h2>Nueva Cita <%= @event.name %></h2>
+    <p>Para: <b><%= @user.name.capitalize %></b></p>
+    <p>Fecha: <b><%= I18n.l(@event.date, format: :short) %></b></p>
+    <p>Hora: <b><%= @event.display %></b></p>
+</body>
+
+</html>
