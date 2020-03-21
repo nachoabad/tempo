@@ -23,7 +23,9 @@ Rails.application.routes.draw do
     end
   end
   resources :events, only: [:index, :destroy]
+
   resources :pages,  only: :index
+  resources :free_trials, only: [:new, :create]
 
   root to: 'pages#index'
 end

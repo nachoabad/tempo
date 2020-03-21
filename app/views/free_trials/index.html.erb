@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Free Trials</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Contact time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @free_trials.each do |free_trial| %>
+      <tr>
+        <td><%= free_trial.name %></td>
+        <td><%= free_trial.phone %></td>
+        <td><%= free_trial.email %></td>
+        <td><%= free_trial.contact_time %></td>
+        <td><%= link_to 'Show', free_trial %></td>
+        <td><%= link_to 'Edit', edit_free_trial_path(free_trial) %></td>
+        <td><%= link_to 'Destroy', free_trial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Free Trial', new_free_trial_path %>

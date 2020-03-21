@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @free_trial.name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @free_trial.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @free_trial.email %>
+</p>
+
+<p>
+  <strong>Contact time:</strong>
+  <%= @free_trial.contact_time %>
+</p>
+
+<%= link_to 'Edit', edit_free_trial_path(@free_trial) %> |
+<%= link_to 'Back', free_trials_path %>
