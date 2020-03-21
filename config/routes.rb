@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     end
   end
   resources :events, only: [:index, :destroy]
+  get '/:slug', to: 'slots#index'
 
   resources :pages,  only: :index
   resources :free_trials, only: [:new, :create]

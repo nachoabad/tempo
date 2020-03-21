@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_03_21_171935) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "provider"
+    t.string "uid"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -25,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_171935) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
   end
 
   create_table "events", force: :cascade do |t|
@@ -52,12 +55,14 @@ ActiveRecord::Schema.define(version: 2020_03_21_171935) do
 
   create_table "services", force: :cascade do |t|
     t.string "name"
+    t.string "slug"
     t.string "time_zone"
     t.integer "status"
     t.bigint "admin_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["admin_id"], name: "index_services_on_admin_id"
+    t.index ["slug"], name: "index_services_on_slug"
     t.index ["status"], name: "index_services_on_status"
   end
 
@@ -79,6 +84,8 @@ ActiveRecord::Schema.define(version: 2020_03_21_171935) do
     t.integer "privilege", default: 0, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "provider"
+    t.string "uid"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -86,6 +93,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_171935) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   add_foreign_key "events", "slots"
