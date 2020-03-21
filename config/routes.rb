@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :users
+  get "/auth/google/callback"  => "authentications#google"
 
   namespace :admin do
     resources :services, shallow: true do

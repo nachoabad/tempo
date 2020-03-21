@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="#"><%= @service&.name || 'Tempo' %></a>
+        <a class="navbar-brand" href="#"><%= @service&.name || 'Citas' %></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Citas
         </button>
@@ -22,7 +22,7 @@
                     <%= link_to 'Mis Citas', events_path, class: 'nav-link' %>
                 </li>
                 <li class="nav-item cta">
-                    <%= link_to 'Buscar Citas', service_slots_path(@service_id), class: 'nav-link' %>
+                    <%= link_to 'Buscar Citas', service_slots_path(@service), class: 'nav-link' %>
                 </li>
                 <% else %>
 

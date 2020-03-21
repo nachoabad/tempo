@@ -1,5 +1,4 @@
 class SlotsController < ApplicationController
-  before_action :set_service, only: [:index]
   before_action :authenticate_user!
   before_action :set_slot, only: [:show, :edit, :update, :destroy]
 
@@ -21,8 +20,6 @@ class SlotsController < ApplicationController
   def edit
   end
 
-  # POST /slots
-  # POST /slots.json
   def create
     @slot = Slot.new(slot_params)
 
@@ -60,11 +57,6 @@ class SlotsController < ApplicationController
   end
 
   private
-    def set_service
-      @service = Service.find(params[:service_id])
-      cookies[:service_id] = @service.id
-    end
-
     def set_slot
       @slot = Slot.find(params[:id])
     end
