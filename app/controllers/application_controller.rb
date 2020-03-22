@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def set_service
     cookies[:service_id] = params[:service_id] if params[:service_id]
-    id = params[:service_id] || cookies[:service_id] || (current_user.events.last.service.id if current_user)
+    id = cookies[:service_id] || (current_user.events.last&.service&.id if current_user)
     @service = Service.find(id) if id
   end
 
