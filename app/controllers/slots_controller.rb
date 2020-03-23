@@ -3,7 +3,10 @@ class SlotsController < ApplicationController
   before_action :set_slot, only: [:show, :edit, :update, :destroy]
 
   def index
-    @service       = Service.find_by(slug: params[:slug]) if params[:slug]
+    if params[:slug]
+      @service             = Service.find_by(slug: params[:slug]) 
+      cookies[:service_id] = @service.id if @service
+    end
     params_date    = params[:date].try(:to_date) || Date.today
     @date          = @service.soonest_available_date(params_date)
     @next_date     = @service.soonest_available_date(@date + 1)
