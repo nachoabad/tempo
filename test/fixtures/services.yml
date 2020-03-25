@@ -12,3 +12,8 @@ b:
 three:
   name: Service 3
   admin: two
+
+slot_blocker_test:
+  name: SlotBlockerTest
+  admin: three
+  time_zone: Madrid

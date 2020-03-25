@@ -42,3 +42,61 @@ b_7_812:
   min: 12
   status: 1
   service: b
+
+# SlotBlockerTest
+
+week_start_available:
+  day: 1
+  hour: 1
+  min: 0
+  status: 1
+  service: slot_blocker_test
+
+week_start_reserved:
+  day: 1
+  hour: 2
+  min: 0
+  status: 1
+  service: slot_blocker_test
+
+week_start_blocked:
+  day: 1
+  hour: 3
+  min: 0
+  status: 1
+  service: slot_blocker_test
+
+week_start_inactive:
+  day: 1
+  hour: 4
+  min: 0
+  status: 0
+  service: slot_blocker_test
+
+week_end_available:
+  day: 0
+  hour: 1
+  min: 0
+  status: 1
+  service: slot_blocker_test
+
+week_end_reserved:
+  day: 0
+  hour: 2
+  min: 0
+  status: 1
+  service: slot_blocker_test
+
+week_end_blocked:
+  day: 0
+  hour: 3
+  min: 0
+  status: 1
+  service: slot_blocker_test
+
+week_end_inactive:
+  day: 0
+  hour: 4
+  min: 0
+  status: 0
+  service: slot_blocker_test

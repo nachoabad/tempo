@@ -7,3 +7,7 @@ one:
 two:
   email: 'admin2@mail.com'
   encrypted_password: <%= encrypted_password %>
+
+three:
+  email: 'admin3@mail.com'
+  encrypted_password: <%= encrypted_password %>
