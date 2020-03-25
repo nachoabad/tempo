@@ -44,15 +44,15 @@ class SlotBlocker
   def events_to_block
     events = []
     if @date && @slot
-      events << Event.create_or_find_by(date: @date, slot: @slot)
+      events << Event.where(date: @date, slot: @slot).first_or_create
     elsif @date
       @service.slots.on_date(@date).each do |slot|
-        events << Event.create_or_find_by(date: @date, slot: slot)
+        events << Event.where(date: @date, slot: slot).first_or_create
       end
     elsif @week
       (@week.beginning_of_week..@week.end_of_week).each do |date|
         @service.slots.on_date(date).each do |slot|
-          events << Event.create_or_find_by(date: date, slot: slot)
+          events << Event.where(date: date, slot: slot).first_or_create
         end
       end
     end
