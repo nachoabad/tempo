@@ -11,7 +11,7 @@ class Event < ApplicationRecord
   validate :date_in_slot
 
   delegate :name, :time_zone, :admin,  to: :service
-  delegate :display, :service,        to: :slot
+  delegate :display, :service,         to: :slot
   
   default_scope { order(:date) }
 
