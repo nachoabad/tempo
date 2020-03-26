@@ -9,3 +9,7 @@ one:
 two:
   email: 'user2@mail.com'
   encrypted_password: <%= encrypted_password %>
+
+slot_blocker_test:
+  email: 'slotblockertest@mail.com'
+  encrypted_password: <%= encrypted_password %>

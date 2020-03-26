@@ -7,4 +7,55 @@ one:
   slot: today_8am
   user: one
 
+# SlotBlockerTest
 
+week_start_reserved:
+  date: <%= Date.today.beginning_of_week %>
+  status: 1
+  slot: week_start_reserved
+  user: slot_blocker_test
+
+week_start_blocked:
+  date: <%= Date.today.beginning_of_week %>
+  status: 2
+  slot: week_start_blocked
+
+week_start_inactive:
+  date: <%= Date.today.beginning_of_week %>
+  status: 1
+  slot: week_start_inactive
+  user: slot_blocker_test
+
+week_end_reserved:
+  date: <%= Date.today.end_of_week %>
+  status: 1
+  slot: week_end_reserved
+  user: slot_blocker_test
+
+week_end_blocked:
+  date: <%= Date.today.end_of_week %>
+  status: 2
+  slot: week_end_blocked
+
+week_end_inactive:
+  date: <%= Date.today.end_of_week %>
+  status: 1
+  slot: week_end_inactive
+  user: slot_blocker_test
+
+next_week_start_reserved:
+  date: <%= Date.today.beginning_of_week + 7 %>
+  status: 1
+  slot: week_start_reserved
+  user: slot_blocker_test
+
+next_week_start_blocked:
+  date: <%= Date.today.beginning_of_week + 7 %>
+  status: 2
+  slot: week_start_blocked
+
+next_week_start_inactive:
+  date: <%= Date.today.beginning_of_week + 7 %>
+  status: 1
+  slot: week_start_inactive
+  user: slot_blocker_test

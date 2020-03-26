@@ -2,6 +2,8 @@ class Event < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :slot
 
+  enum status: [:pending, :confirmed, :blocked]
+
   accepts_nested_attributes_for :user, update_only: true
 
   validates :date, presence: true
@@ -10,8 +12,6 @@ class Event < ApplicationRecord
 
   delegate :name, :time_zone, :admin,  to: :service
   delegate :display, :service,        to: :slot
-
-  enum status: [:pending, :confirmed, :blocked]
   
   default_scope { order(:date) }
 
