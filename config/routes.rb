@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   get "/auth/google/callback"  => "authentications#google"
 
+  get '/:privacidad', to: 'pages#privacy'
+
   namespace :admin do
     resources :services, shallow: true do
       resources :events
