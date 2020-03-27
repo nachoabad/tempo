@@ -5,6 +5,10 @@ class SlotBlockerTest < ActiveSupport::TestCase
     @service = services(:slot_blocker_test)
   end
 
+  teardown do
+    next_week_events_remain_intact
+  end
+
   test 'block a reserved event' do
     slot = slots(:week_start_reserved).id
     date = Date.today.beginning_of_week.to_s
@@ -63,5 +67,33 @@ class SlotBlockerTest < ActiveSupport::TestCase
       SlotBlocker.new(blocker_params: {date: date.to_s}, service: @service).unblock!
     end
     assert_equal @service.slots.available_on_date(date).count, 3
+  end
+
+  test 'block a week' do
+    date = Date.today
+
+    assert_difference('Event.count', 2) do
+      SlotBlocker.new(blocker_params: {week: date.to_s}, service: @service).block!
+    end
+    assert @service.slots.available_on_date(date.beginning_of_week).empty?
+    assert @service.slots.available_on_date(date.end_of_week).empty?
+  end
+
+  test 'unblock a week' do
+    date = Date.today
+
+    assert_difference('Event.count', -6) do
+      SlotBlocker.new(blocker_params: {week: date.to_s}, service: @service).unblock!
+    end
+    assert_equal @service.slots.available_on_date(date.beginning_of_week).count, 3
+    assert_equal @service.slots.available_on_date(date.end_of_week).count, 3
+  end
+
+  private
+
+  def next_week_events_remain_intact
+    assert events(:next_week_start_reserved).confirmed?
+    assert events(:next_week_start_blocked).blocked?
+    assert events(:next_week_start_inactive).confirmed?
   end
 end
