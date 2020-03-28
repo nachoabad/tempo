@@ -54,7 +54,9 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert', 'Cita reservada éxitosamente'
     assert_select 'h2', 'Mis Citas'
     assert_select 'td', 'Service 1'
-    assert_select 'td', "#{I18n.l(Date.tomorrow, format: :short)} 8:00AM"
+    assert_select 'td', /#{I18n.l(Date.tomorrow, format: :short)}/
+    assert_select 'td', /8:00AM/
+    assert_select 'td', /Madrid/
 
     get service_slots_path(services(:one), date: Date.tomorrow.to_s)
     assert_select 'p.name', I18n.l(Date.today + 7)

@@ -3,6 +3,7 @@
 one:
   name: Service 1
   admin: one
+  time_zone: Madrid
 
 b:
   name: Service B
