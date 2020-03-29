@@ -11,7 +11,8 @@ admin1 = Admin.create!(email: 'admin1@mail.com', password: 'adminadmin', passwor
 user1 = User.create! email: 'user1@mail.com', password: 'useruser', password_confirmation: 'useruser'
 user2 = User.create! email: 'user2@mail.com', password: 'useruser', password_confirmation: 'useruser'
 
-service1 = admin1.services.create! name: 'Service 1', slug: 'service1', time_zone: 'Caracas'
+service1 =  admin1.services.create! name: 'Service 1', slug: 'service1', time_zone: 'Venezuela',
+            payment_instruction: 'Here goes the payment instructions'
 
 service1.slots.create! day: 1, hour: 8,  min:  0, status: 1
 service1.slots.create! day: 1, hour: 9,  min: 30, status: 1

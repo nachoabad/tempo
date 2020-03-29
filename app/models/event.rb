@@ -2,6 +2,8 @@ class Event < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :slot
 
+  has_one_attached :payment_screenshot
+
   enum status: [:pending, :confirmed, :blocked]
 
   accepts_nested_attributes_for :user, update_only: true

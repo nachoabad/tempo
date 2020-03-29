@@ -15,9 +15,9 @@
                 <p class="name text-danger">Este horario está bloqueado</p>
               <% else %>
                 <p class="name">Reserva: <%= event.user.name%></p>
-                <p class="name">Email: <%= event.user.email%></p>
+                <p class="name">Email: <span class="text-lowercase"><%= event.user.email %></span></p>
                 <p class="name">Telf: <%= event.user.phone%></p>
-                <p class="name">Comentarios: <%= event.note %></p>
+                <b><%= link_to 'Ver Soporte de Pago', url_for(event.payment_screenshot), target: :_blank if event.payment_screenshot.attached? %></b>
               <% end %>
             </div>
           <% end %>

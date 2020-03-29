@@ -22,9 +22,14 @@
       <%= user_form.text_field :phone, class: 'form-control', placeholder: 'Teléfono de contacto', required: true %>
     </div>
   <% end %>
-  <div class="form-group">
-    <%= form.text_area :note, class: 'form-control', placeholder: 'Comentarios (opcional)' %>
-  </div>
+
+  <% if @service.payment_instructions.present? %>
+    <p class="name"><%= @service.payment_instructions %></p>
+
+    <div class="form-group">
+      <%= form.file_field :payment_screenshot, class: 'form-control-file', required: true %>
+    </div>
+  <% end%>
 
   <div class="form-group">
     <%= form.submit "Reservar cita", class: "btn btn-primary btn-block py-3 px-5" %>

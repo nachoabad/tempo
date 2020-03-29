@@ -63,7 +63,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:date, :note)
+      params.require(:event).permit(:date, :note, :payment_screenshot)
     end
 
     def user_params
