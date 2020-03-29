@@ -3,5 +3,6 @@ class Admin::ServicesController < ApplicationController
 
   def index
     @services = current_admin.services
+    redirect_to admin_service_events_path(@services.first) if @services.count == 1
   end
 end

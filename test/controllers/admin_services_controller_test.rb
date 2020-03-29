@@ -7,8 +7,8 @@ class AdminServicesControllerTest < ActionDispatch::IntegrationTest
     sign_in admins(:one)
   end
 
-  test "should get index" do
+  test "should redirect to first service events index if admin has only one service" do
     get admin_services_url
-    assert_response :success
+    assert_redirected_to admin_service_events_path(admins(:one).services.first)
   end
 end
