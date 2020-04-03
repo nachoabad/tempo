@@ -4,7 +4,7 @@ class CreateSlots < ActiveRecord::Migration[6.0]
       t.integer :day
       t.integer :hour
       t.integer :min
-      t.integer :status
+      t.integer :status, default: 0, null: false
       t.references :service, null: false, foreign_key: true
 
       t.timestamps

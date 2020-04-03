@@ -3,7 +3,7 @@ class CreateEvents < ActiveRecord::Migration[6.0]
     create_table :events do |t|
       t.date :date
       t.string :note
-      t.integer :status
+      t.integer :status, default: 0, null: false
       t.references :slot, null: false, foreign_key: true
       t.references :user, foreign_key: true
 

@@ -30,6 +30,13 @@
                 <li class="nav-item cta">
                     <%= link_to 'Buscar Citas', service_slots_path(@service), class: 'nav-link' %>
                 </li>
+                <% elsif devise_controller? && resource_name == :user %>
+                    <li class="nav-item">
+                        <%= link_to 'Iniciar Sesión', new_session_path(resource_name), class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item cta">
+                        <%= link_to 'Crear Cuenta', new_registration_path(resource_name), class: 'nav-link' %>
+                    </li>
                 <% else %>
 
                 <% end %>
