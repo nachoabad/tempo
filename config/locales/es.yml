@@ -45,7 +45,7 @@ es:
     formats:
       long: "%a %-d %b"
       default: '%A, %B %d, %Y'
-      short: '%e-%-m-%y'
+      short: '%-e-%-m-%y'
     month_names:
       -
       - enero

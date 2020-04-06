@@ -1,37 +1,43 @@
 <section class="ftco-section">
-    <div class="container">
-        <div class="row justify-content-center mb-3">
-            <div class="text-center heading-section">
-                <h2>Mis Citas</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class="thead-primary">
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Cita</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% @events.each do |event| %>
-                            <tr>
-                                <td>
-                                    <%= I18n.l(event.date, format: :short) %><br>
-                                    <%= event.display %><br>
-                                    <%= event.time_zone %>
-                                </td>
-                                <td><%= event.name %></td>
-                                <td><%= link_to 'Anular', event, class: 'btn btn-danger', method: :delete, data: { confirm: '¿Desea anular esta cita?' } %></td>
-                            </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row justify-content-center mb-3">
+      <div class="text-center heading-section">
+        <h2>Mis Citas</h2>
+      </div>
     </div>
+    <% if @events.any? %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-primary">
+                <tr>
+                  <th>Fecha</th>
+                  <th>Cita</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @events.each do |event| %>
+                <tr>
+                  <td>
+                    <%= I18n.l(event.date, format: :short) %><br>
+                    <%= event.display %><br>
+                    <%= event.time_zone %>
+                  </td>
+                  <td><%= event.name %></td>
+                  <td><%= link_to 'Anular', event, class: 'btn btn-danger', method: :delete, data: { confirm: '¿Desea anular esta cita?' } %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="alert alert-primary text-center" role="alert">
+        No tienes citas previstas. Reserva tu cita <%= link_to 'aquí', service_slots_path(@service) %>
+      </div>
+    <% end %>
+  </div>
 </section>
