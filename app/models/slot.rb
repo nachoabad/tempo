@@ -10,9 +10,11 @@ class Slot < ApplicationRecord
 
   scope :on_date, ->(date) { where(day: date.wday) }
 
+  #TODO: Optimize this
   def self.available_on_date(date)
     active_slots = active.on_date(date)
-    active_slots.select { |slot| slot.available_on_date?(date) }
+    available_slots = active_slots.select { |slot| slot.available_on_date?(date) }
+    date.today? ? available_slots.select { |slot| slot.to_time > Time.current.localtime(slot.formatted_offset) } : available_slots
   end
 
   def available_on_date?(date)
@@ -25,5 +27,14 @@ class Slot < ApplicationRecord
 
   def display
     Time.new(1, 1, 1, hour, min).strftime('%l:%M%p')
+  end
+
+  def to_time
+    current_time_in_zone = Time.current.localtime(formatted_offset)
+    current_time_in_zone.change(hour: hour, min: min)
+  end
+
+  def formatted_offset
+    ActiveSupport::TimeZone[time_zone].formatted_offset
   end
 end

@@ -6,7 +6,12 @@ class SlotTest < ActiveSupport::TestCase
   end
 
   test '.available_on_date' do
+    Timecop.travel(Date.today.beginning_of_day)
     assert_equal @service.slots.available_on_date(Date.today), [slots(:today_8am)]
+    assert_equal @service.slots.available_on_date(Date.tomorrow), [slots(:tomorrow_8am)]
+
+    Timecop.travel(Date.today.end_of_day - 3.hours)
+    assert_equal @service.slots.available_on_date(Date.today), []
     assert_equal @service.slots.available_on_date(Date.tomorrow), [slots(:tomorrow_8am)]
   end
 

@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ServiceTest < ActiveSupport::TestCase
   test '#soonest_available_date' do
+    Timecop.freeze(Date.today.beginning_of_day)
     assert_equal services(:one).soonest_available_date(Date.yesterday), Date.today
     assert_equal services(:one).soonest_available_date(Date.today), Date.today
     assert_equal services(:one).soonest_available_date(Date.tomorrow), Date.tomorrow
@@ -9,6 +10,7 @@ class ServiceTest < ActiveSupport::TestCase
   end
 
   test '#previous_available_date' do
+    Timecop.freeze(Date.today.beginning_of_day)
     assert_nil    services(:one).previous_available_date(Date.yesterday)
     assert_nil    services(:one).previous_available_date(Date.today)
     assert_equal  services(:one).previous_available_date(Date.tomorrow), Date.today

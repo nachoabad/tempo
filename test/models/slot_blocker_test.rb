@@ -2,6 +2,7 @@ require 'test_helper'
 
 class SlotBlockerTest < ActiveSupport::TestCase
   setup do
+    Timecop.freeze(Date.today.beginning_of_day)
     @service = services(:slot_blocker_test)
   end
 

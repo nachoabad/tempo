@@ -23,6 +23,8 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "can book a slot and unbook it" do
+    Timecop.freeze(Date.today.beginning_of_day)
+
     get service_slots_path(services(:one))
     follow_redirect!
     assert_select "h2", "Iniciar sesión"
