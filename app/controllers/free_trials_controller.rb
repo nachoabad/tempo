@@ -28,6 +28,7 @@ class FreeTrialsController < ApplicationController
 
     respond_to do |format|
       if @free_trial.save
+        FreeTrialMailer.with(free_trial: @free_trial).new_email.deliver_later
         format.html { redirect_to root_path, notice: 'Hemos recibido tus datos. Pronto serás contactado.' }
         format.json { render :show, status: :created, location: @free_trial }
       else

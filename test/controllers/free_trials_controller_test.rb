@@ -12,7 +12,9 @@ class FreeTrialsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create free_trial" do
     assert_difference('FreeTrial.count') do
-      post free_trials_url, params: { free_trial: { contact_time: @free_trial.contact_time, email: @free_trial.email, name: @free_trial.name, phone: @free_trial.phone } }
+      assert_emails 1 do
+        post free_trials_url, params: { free_trial: { contact_time: @free_trial.contact_time, email: @free_trial.email, name: @free_trial.name, phone: @free_trial.phone } }
+      end
     end
 
     assert_redirected_to root_path
