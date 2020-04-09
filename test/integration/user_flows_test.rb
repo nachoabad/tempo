@@ -49,10 +49,12 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_select '#event_user_attributes_phone[value=?]', 'phone1'
 
     file = fixture_file_upload(Rails.root.join('test', 'fixtures', 'files', 'sample.png'), 'image/png')
-    assert_difference('ActiveStorage::Attachment.count', 1) do
-      post slot_events_path(slots(:tomorrow_8am)),
-        params: { event: { date: Date.tomorrow, note: 'My Note', payment_screenshot: file,
-                          user_attributes: { name: 'User One edited', phone: 'phone1 edited'} } }
+    assert_emails 1 do
+      assert_difference('ActiveStorage::Attachment.count', 1) do
+        post slot_events_path(slots(:tomorrow_8am)),
+          params: { event: { date: Date.tomorrow, note: 'My Note', payment_screenshot: file,
+                            user_attributes: { name: 'User One edited', phone: 'phone1 edited'} } }
+      end
     end
     follow_redirect!
 
