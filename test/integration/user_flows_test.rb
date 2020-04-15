@@ -3,6 +3,10 @@ require 'test_helper'
 class UserFlowsTest < ActionDispatch::IntegrationTest
   test "can register and logout" do
     get service_slots_path(services(:one))
+    assert_response :success
+    assert_select "h2", 'Citas disponibles'
+
+    get new_slot_event_path(slots(:tomorrow_8am), date: Date.tomorrow.to_s)
     assert_response :redirect
     follow_redirect!
     assert_response :success
@@ -15,8 +19,8 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select "a", "Salir"
     assert_select "a", services(:one).name
-    assert_select "h2", 'Citas disponibles'
-    
+    assert_select "h2", "Reservar  8:00AM, #{I18n.l Date.tomorrow}"
+
     delete destroy_user_session_path
     follow_redirect!
     assert_select "h2", "Iniciar sesión"
@@ -26,12 +30,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     Timecop.freeze(Date.today.beginning_of_day)
 
     get service_slots_path(services(:one))
-    follow_redirect!
-    assert_select "h2", "Iniciar sesión"
-
-    post user_session_path,
-      params: { user: { email: users(:one).email, password: 'useruser' } }
-    follow_redirect!
     assert_select 'p.name', I18n.l(Date.today)
     assert_select 'a', "Siguientes >>"
     assert_select "a", {count: 0, text: "<< Anteriores"}
@@ -44,6 +42,13 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a', '8:00AM'
 
     get new_slot_event_path(slots(:tomorrow_8am), date: Date.tomorrow.to_s)
+    follow_redirect!
+    assert_select "h2", "Iniciar sesión"
+
+    post user_session_path,
+      params: { user: { email: users(:one).email, password: 'useruser' } }
+    follow_redirect!
+
     assert_select 'h2', "Reservar #{slots(:tomorrow_8am).display}, #{I18n.l Date.tomorrow}"
     assert_select '#event_user_attributes_name[value=?]', 'User One'
     assert_select '#event_user_attributes_phone[value=?]', 'phone1'
@@ -71,7 +76,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     delete event_path(slots(:tomorrow_8am).events.on_date(Date.tomorrow).first)
     follow_redirect!
     assert_select 'div.alert', 'Cita anulada éxitosamente'
-    
+
     get service_slots_path(services(:one), date: Date.tomorrow.to_s)
     assert_select 'p.name', I18n.l(Date.tomorrow)
     assert_select 'a', "Siguientes >>"
