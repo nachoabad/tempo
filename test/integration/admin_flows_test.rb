@@ -9,7 +9,7 @@ class AdminFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     
-    assert_select "h2", "Iniciar sesión"
+    assert_select "p", "o con tu email"
 
     post admin_session_path,
       params: { admin: { email: 'admin2@mail.com', password: 'adminadmin' } }
@@ -18,7 +18,7 @@ class AdminFlowsTest < ActionDispatch::IntegrationTest
 
     delete destroy_admin_session_path
     follow_redirect!
-    assert_select "h2", "Iniciar sesión"
+    assert_select "p", "o con tu email"
   end
 
   test 'can see slots and events' do
