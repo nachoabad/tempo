@@ -3,20 +3,16 @@
     <div class="row justify-content-center mb-3">
       <div class="col-lg-4 col-md-6">
         <div class="text-center heading-section">
-          <% if resource_name == :user %>
-            <h2>Iniciar sesión</h2>
-          <% end %>
-          <%= link_to admin_google_oauth2_omniauth_authorize_path, class: 'btn btn-primary btn-block py-3 px-5' do %>
+          <% auth_path = resource_name == :admin ? '/admins/auth/admin_google' : '/users/auth/user_google' %>
+          <%= link_to auth_path, class: 'btn btn-primary btn-block py-3 px-5' do %>
             <i class="fa fa-google"></i> Iniciar con Google
-          <% end if resource_name == :admin %>
+          <% end %>
         </div>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-lg-4 col-md-6">
-        <% if resource_name == :admin %>
-          <p class="text-center">o con tu email</p>
-        <% end %>
+        <p class="text-center">o con tu email</p>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-group">
             <%= f.email_field :email, class: 'form-control', autocomplete: "email", placeholder: 'Email' %>

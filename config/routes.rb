@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
+  devise_for :admins
   devise_for :users
+
+  devise_scope :admin do
+    get "admins/auth/admin_google/callback"  => "admins/omniauth_callbacks#admin_google"
+  end
+
+  devise_scope :user do
+    get "users/auth/user_google/callback"  => "users/omniauth_callbacks#user_google"
+  end
 
   get '/privacidad', to: 'pages#privacy'
 
