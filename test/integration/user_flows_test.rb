@@ -23,7 +23,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 
     delete destroy_user_session_path
     follow_redirect!
-    assert_select "h2", "Iniciar sesión"
+    assert_select "p", "o con tu email"
   end
 
   test "can book a slot and unbook it" do
@@ -43,7 +43,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 
     get new_slot_event_path(slots(:tomorrow_8am), date: Date.tomorrow.to_s)
     follow_redirect!
-    assert_select "h2", "Iniciar sesión"
+    assert_select "p", "o con tu email"
 
     post user_session_path,
       params: { user: { email: users(:one).email, password: 'useruser' } }
