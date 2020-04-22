@@ -1,12 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="/">
-            <% if %w(pages free_trials).include? controller_name %>
-                Citas
-            <% else%>
-                <%= @service&.name || 'Citas' %>
-            <% end %>
-        </a>
+        <% if @service && %w(pages free_trials).exclude?(controller_name) %>
+            <%= link_to @service.name, service_slots_path(@service), class: "navbar-brand" %>
+        <% else %>
+            <%= link_to 'Citas', root_path, class: "navbar-brand" %>
+        <% end %>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Citas
         </button>
