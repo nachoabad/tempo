@@ -5,7 +5,8 @@ class Admin < ApplicationRecord
           # :omniauthable, omniauth_providers: [:admin_google]
   
   has_many :services
-  has_many :slots, through: :services
+  has_many :slots,  through: :services
+  has_many :events, through: :services
 
   def self.from_omniauth(access_token)
     data = access_token.info

@@ -1,6 +1,6 @@
 class Slot < ApplicationRecord
   belongs_to :service
-  has_many   :events
+  has_many   :events, dependent: :destroy
 
   enum status: [:inactive, :active]
 

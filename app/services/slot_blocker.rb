@@ -1,5 +1,7 @@
 # TODO: Refactor and optimize
 class SlotBlocker
+  attr_reader :slot
+
   def initialize(blocker_params:, service:)
     @service = service
     @week    = blocker_params[:week].try :to_date

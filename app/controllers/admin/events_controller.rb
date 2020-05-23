@@ -60,7 +60,7 @@ class Admin::EventsController < ApplicationController
 
   private
     def set_event
-      @event = Event.find(params[:id])
+      @event = current_admin.events.find(params[:id])
     end
 
     def set_service

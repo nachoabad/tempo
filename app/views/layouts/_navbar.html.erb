@@ -13,22 +13,25 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <% if admin_signed_in? %>
-                <li class="nav-item cta">
-                    <%= link_to 'Ver citas', admin_root_path, class: 'nav-link' %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to 'Salir', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
-                </li>
-                <% elsif user_signed_in? %>
-                <li class="nav-item">
-                    <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to 'Mis Citas', events_path, class: 'nav-link' %>
-                </li>
-                <li class="nav-item cta">
-                    <%= link_to 'Buscar Citas', service_slots_path(@service), class: 'nav-link' %>
-                </li>
+                    <li class="nav-item">
+                        <%= link_to 'Ver citas', admin_root_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Nuevo Horario', new_admin_service_slot_path(@service), class: 'nav-link' if @service %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Salir', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+                    </li>
+                    <% elsif user_signed_in? %>
+                    <li class="nav-item">
+                        <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Mis Citas', events_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item cta">
+                        <%= link_to 'Buscar Citas', service_slots_path(@service), class: 'nav-link' %>
+                    </li>
                 <% elsif devise_controller? && resource_name == :user %>
                     <li class="nav-item">
                         <%= link_to 'Iniciar Sesión', new_session_path(resource_name), class: 'nav-link' %>

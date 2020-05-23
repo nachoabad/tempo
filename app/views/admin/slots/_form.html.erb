@@ -1,0 +1,29 @@
+<%= form_with(model: [:admin, service, slot], local: true) do |form| %>
+  <% if slot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(slot.errors.count, "error") %> prohibited this slot from being saved:</h2>
+
+      <ul>
+        <% slot.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= form.select :day, I18n.t('date.day_names').zip(0..6), { prompt: 'Día'}, {required: 'true', class: 'form-control'} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.select :hour, (7..22), { prompt: 'Hora'}, {required: 'true', class: 'form-control'} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.select :min, [00,15,30,45], { prompt: 'Minuto'}, {required: 'true', class: 'form-control'} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Crear nuevo horario", class: "btn btn-primary btn-block py-3 px-5" %>
+  </div>
+<% end %>
