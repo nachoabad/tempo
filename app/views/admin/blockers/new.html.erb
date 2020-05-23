@@ -40,7 +40,9 @@
           </div>
         </div>
         <div class="d-flex justify-content-center mt-5">
-          <%= link_to '<< Regresar', admin_service_events_path(@service), class: "btn btn-primary py-3 px-5" %>
+          <%= link_to admin_service_events_path(@service), class: "btn btn-primary py-3 px-5" do %>
+            <i class="fa fa-arrow-left"></i> Regresar
+          <% end %>
         </div>
       </div>
     </div>

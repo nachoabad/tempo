@@ -18,16 +18,13 @@ class Admin::SlotsController < ApplicationController
   end
 
   def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_service_events_path(@event.service), notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @slot.destroy
+    redirect_to admin_service_events_path(@slot.service), notice: 'Horario eliminado'
   end
 
   private
     def set_slot
-      @slot = @service.slots.find(params[:id])
+      @slot = current_admin.slots.find(params[:id])
     end
 
     def set_service

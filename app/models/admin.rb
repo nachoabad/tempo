@@ -6,7 +6,7 @@ class Admin < ApplicationRecord
   
   has_many :services
   has_many :slots,  through: :services
-  has_many :events, through: :services
+  has_many :events, through: :slots
 
   def self.from_omniauth(access_token)
     data = access_token.info
