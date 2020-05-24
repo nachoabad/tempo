@@ -45,4 +45,17 @@ class AdminFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a', '1:45PM'
   end
 
+  test 'can destroy a slot' do
+    sign_in admins(:two)
+
+    get admin_service_events_path(services(:b))
+
+    assert_select 'a', '8:11AM'
+
+    assert_difference('Slot.count', -1) do
+      delete admin_slot_path(slots(:b_1_811))
+    end
+    follow_redirect!
+    assert_select 'div.alert', 'Horario eliminado'
+  end
 end
