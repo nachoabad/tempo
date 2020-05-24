@@ -31,14 +31,14 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 
     get service_slots_path(services(:one))
     assert_select 'p.name', I18n.l(Date.today)
-    assert_select 'a', "Siguientes >>"
-    assert_select "a", {count: 0, text: "<< Anteriores"}
+    assert_select 'a', 'Siguientes'
+    assert_select "a", {count: 0, text: "Anteriores"}
     assert_select 'a.btn', '8:00AM'
 
     get service_slots_path(services(:one), date: Date.tomorrow.to_s)
     assert_select 'p.name', I18n.l(Date.tomorrow)
-    assert_select 'a', "Siguientes >>"
-    assert_select 'a', "<< Anteriores"
+    assert_select 'a', 'Siguientes'
+    assert_select 'a', "Anteriores"
     assert_select 'a', '8:00AM'
 
     get new_slot_event_path(slots(:tomorrow_8am), date: Date.tomorrow.to_s)
@@ -79,8 +79,8 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 
     get service_slots_path(services(:one), date: Date.tomorrow.to_s)
     assert_select 'p.name', I18n.l(Date.tomorrow)
-    assert_select 'a', "Siguientes >>"
-    assert_select "a", "<< Anteriores"
+    assert_select 'a', "Siguientes"
+    assert_select "a", "Anteriores"
     assert_select 'a', '8:00AM'
   end
 end
