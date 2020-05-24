@@ -4,7 +4,7 @@
             <div class="text-center heading-section px-3">
                 <h2>Reservar <%= @slot.display %>, <%= I18n.l @date %></h2>
                 <p class="name">
-                    Zona Horaria: <%= @slot.time_zone %>
+                    Zona Horaria: <%= @slot.time_zone_name || @slot.time_zone %>
                 </p>
             </div>
         </div>

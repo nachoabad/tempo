@@ -4,7 +4,7 @@ class Slot < ApplicationRecord
 
   enum status: [:inactive, :active]
 
-  delegate :time_zone, to: :service
+  delegate :time_zone, :time_zone_name, to: :service
 
   default_scope { order(:hour, :min) }
 

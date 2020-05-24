@@ -4,7 +4,7 @@
             <div class="text-center heading-section px-3">
                 <h2>Nuevo Horario</h2>
                 <p class="name">
-                    Zona Horaria: <%= @service.time_zone %>
+                    Zona Horaria: <%= @service.time_zone_name || @service.time_zone %>
                 </p>
             </div>
         </div>

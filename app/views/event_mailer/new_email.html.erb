@@ -9,7 +9,7 @@
     <h2 style="font-family:'Work Sans','Arial','sans-serif'">Nueva Cita <%= @event.name %></h2>
     <p style="font-family:'Work Sans','Arial','sans-serif'">Para: <b><%= @user.name.titleize %></b></p>
     <p style="font-family:'Work Sans','Arial','sans-serif'">Fecha: <b><%= I18n.l @event.date %></b></p>
-    <p style="font-family:'Work Sans','Arial','sans-serif'">Hora: <b><%= @event.display %> <%= @event.time_zone %></b></p>
+    <p style="font-family:'Work Sans','Arial','sans-serif'">Hora: <b><%= @event.display %> <%= @event.time_zone_name || @event.time_zone %></b></p>
 </body>
 
 </html>

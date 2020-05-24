@@ -23,7 +23,7 @@
                   <td>
                     <%= I18n.l(event.date, format: :short) %><br>
                     <%= event.display %><br>
-                    <%= event.time_zone %>
+                    <%= event.time_zone_name || event.time_zone %>
                   </td>
                   <td><%= event.name %></td>
                   <td><%= link_to 'Anular', event, class: 'btn btn-danger', method: :delete, data: { confirm: '¿Desea anular esta cita?' } %></td>

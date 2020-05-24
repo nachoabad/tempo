@@ -12,8 +12,8 @@ class Event < ApplicationRecord
   validates :slot, uniqueness: { scope: :date }
   validate :date_in_slot
 
-  delegate :name, :time_zone, :admin,  to: :service
-  delegate :display, :service,         to: :slot
+  delegate :name, :time_zone, :time_zone_name, :admin, to: :service
+  delegate :display, :service, to: :slot
   
   default_scope { order(:date) }
 
