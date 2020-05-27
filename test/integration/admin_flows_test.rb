@@ -30,4 +30,19 @@ class AdminFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a', '8:12AM'
     assert_select 'a', '8:13AM'
   end
+
+  test 'can create a new slot' do
+    sign_in admins(:two)
+
+    get new_admin_service_slot_path(services(:b))
+    assert_select 'h2', 'Nuevo Horario'
+
+    assert_difference('Slot.count', 1) do
+      post admin_service_slots_path(services(:b)),
+        params: { slot: { day: 1, hour: 13, min: 45} }
+    end
+    follow_redirect!
+    assert_select 'a', '1:45PM'
+  end
+
 end
