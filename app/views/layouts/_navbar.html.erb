@@ -17,7 +17,7 @@
                         <%= link_to 'Ver citas', admin_root_path, class: 'nav-link' %>
                     </li>
                     <li class="nav-item">
-                        <%= link_to 'Nuevo Horario', new_admin_service_slot_path(@service), class: 'nav-link' if @service %>
+                        <%= link_to 'Nuevo Horario', new_admin_service_slot_path(@service), class: 'nav-link' if @service.admin == current_admin %>
                     </li>
                     <li class="nav-item">
                         <%= link_to 'Salir', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
