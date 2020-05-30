@@ -8,7 +8,7 @@ class Admin::SlotsController < ApplicationController
   end
 
   def create
-    @slot = @service.slots.new(slot_params)
+    @slot = @service.slots.new(slot_params.merge(status: 1))
 
     if @slot.save
       redirect_to admin_service_events_path(@slot.service), notice: 'Nuevo horario creado'
