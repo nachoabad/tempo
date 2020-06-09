@@ -1,5 +1,8 @@
 es:
   activerecord:
+    attributes:
+      user:
+        password: clave
     errors:
       messages:
         record_invalid: registro inválido
@@ -7,8 +10,10 @@ es:
         user:
           attributes:
             password:
-              invalid: 'Must include uppercase & number'
               blank: no puede estar vacía
+              confirmation: las claves no coinciden
+              invalid: 'Must include uppercase & number'
+              too_short: "es muy corta (mínimo %{count} caracteres)"
             password_confirmation:
               confirmation: no coincide las confirmación de clave
   date:
